@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Symfony2PluginSettings">
+    <option name="pluginEnabled" value="true" />
+    <option name="twigNamespaces">
+      <list>
+        <twig_namespace enabled="false" namespaceType="ADD_PATH" path="templates" />
+        <twig_namespace custom="true" namespaceType="ADD_PATH" path="templates" />
+      </list>
+    </option>
+  </component>
+</project>

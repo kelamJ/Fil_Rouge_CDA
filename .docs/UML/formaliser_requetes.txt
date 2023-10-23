@@ -1,0 +1,117 @@
+1. Chiffre d'affaires mois par mois pour une année sélectionnée
+SELECT
+    MONTH(com_date) AS mois,
+    YEAR(com_date) AS annee,
+    SUM(com_total) AS chiffre_affaires
+FROM commande
+WHERE YEAR(com_date) = 1975
+GROUP BY mois, annee
+ORDER BY annee, mois;
+
+
+2. Chiffre d'affaires généré pour un fournisseur
+SELECT
+    f.nom AS nom_fournisseur,
+    SUM(ld.prix * ld.quantite) AS chiffre_affaires
+FROM
+    lignedecommande ld
+        INNER JOIN
+    produit p ON ld.produit_id = p.id
+        INNER JOIN
+    fournisseur f ON p.fournisseur_id = f.id
+GROUP BY
+    f.nom
+HAVING
+    chiffre_affaires IS NOT NULL
+   AND nom = 'Nom du fournisseur';
+   -- Remplacez 'Nom du fournisseur' par le nom du fournisseur que vous souhaitez sélectionner
+
+
+3. TOP 10 des produits les plus commandés pour une année sélectionnée (référence et nom du produit, quantité commandée, fournisseur)
+SELECT
+    p.id AS référence_produit,
+    p.pro_nom AS nom_produit,
+    SUM(ld.quantite) AS quantité_commandée,
+    f.nom AS nom_fournisseur
+FROM
+    lignedecommande ld
+        INNER JOIN
+    produit p ON ld.produit_id = p.id
+        INNER JOIN
+    fournisseur f ON p.fournisseur_id = f.id
+        INNER JOIN
+    commande c ON ld.commande_id = c.id
+WHERE
+        YEAR(c.com_date) = 2004  -- Remplacez 2023 par l'année sélectionnée
+GROUP BY
+    référence_produit, nom_produit, nom_fournisseur
+ORDER BY
+    quantité_commandée DESC
+LIMIT
+    10;
+
+
+4. TOP 10 des produits les plus rémunérateurs pour une année sélectionnée (référence et nom du produit, marge, fournisseur)
+SELECT
+    p.id AS référence_produit,
+    p.pro_nom AS nom_produit,
+    SUM(ld.prix * ld.quantite - p.prix_achat * ld.quantite) AS marge,
+    f.nom AS nom_fournisseur
+FROM
+    lignedecommande ld
+        INNER JOIN
+    produit p ON ld.produit_id = p.id
+        INNER JOIN
+    fournisseur f ON p.fournisseur_id = f.id
+        INNER JOIN
+    commande c ON ld.commande_id = c.id
+WHERE
+        YEAR(c.com_date) = 2004  -- Remplacez 2023 par l'année sélectionnée
+GROUP BY
+    référence_produit, nom_produit, nom_fournisseur
+ORDER BY
+    marge DESC
+LIMIT
+    10;
+
+
+ 5. Top 10 des clients en nombre de commandes ou chiffre d'affaires
+SELECT
+    u.id AS id_client,
+    CONCAT(u.nom, ' ', u.prenom) AS nom_client,
+    COUNT(c.id) AS nombre_de_commandes
+FROM
+    utilisateur u
+        LEFT JOIN
+    commande c ON u.id = c.utilisateur_id
+GROUP BY
+    id_client, nom_client
+ORDER BY
+    nombre_de_commandes DESC
+LIMIT
+    10;
+
+
+6. Répartition du chiffre d'affaires par type de client
+SELECT
+    u.type AS type_de_client,
+    SUM(c.com_total) AS chiffre_d_affaires
+FROM
+    utilisateur u
+        LEFT JOIN
+    commande c ON u.id = c.utilisateur_id
+GROUP BY
+    type_de_client
+
+
+7. Nombre de commandes en cours de livraison.
+SELECT
+    COUNT(*) AS nombre_de_commandes_en_cours_de_livraison
+FROM
+    commande
+WHERE
+    statut_id = 3;
+
+
+
+

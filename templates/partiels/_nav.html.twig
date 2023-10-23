@@ -1,0 +1,23 @@
+<header class="header">
+    <a href="{{ path('accueil') }}" class="logo"><img style="width:3rem;" src="/assets/css/image/logo2.png" alt=""></a>
+
+    <input type="checkbox" id="check">
+    <label for="check" class="icons">
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <i class='bx bx-x'  id="close-icon"></i>
+    </label>
+
+    <nav class="navbar-css">
+        <a href="{{ path('accueil') }}" style="--i:0;">Accueil</a>
+        <a href="#" style="--i:1;">Produits</a>
+        <a href="#" style="--i:3;">Contact</a>
+        {% if app.user %}
+            <a href="#"><i class='bx bx-user bx-sm' style="--i:5;"></i></a>
+            <a href="#"><i class='bx bx-cart bx-sm' style="--i:4;"></i></a>
+            <a href="{{ path('app_logout') }}"><i class='bx bxs-log-out bx-flashing' ></i></a>
+        {% else %}
+            <a href="{{ path('app_login') }}"><i class='bx bx-log-in bx-tada' ></i></a>
+
+        {% endif %}
+    </nav>
+</header>

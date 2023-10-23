@@ -1,0 +1,71 @@
+1. Créez une procédure stockée qui sélectionne les commandes (en cours de livraison)
+DELIMITER //
+
+    CREATE PROCEDURE SelectCommandesEnCoursDeLivraison()
+    BEGIN
+        SELECT
+            c.id AS commande_id,
+            c.com_date AS date_commande,
+            c.com_total AS total_commande,
+            c.com_adresse AS adresse_livraison,
+            c.com_ville AS ville_livraison,
+            c.com_cp AS code_postal_livraison,
+            l.liv_nom AS nom_livreur,
+            l.liv_date AS date_livraison
+        FROM
+            commande c
+        JOIN
+            livraison l ON c.livraison_id = l.id
+        WHERE
+            c.statut_id = 3; -- Assurez-vous que l'ID du statut pour "Expédiée" correspond à votre base de données
+    END //
+
+   DELIMITER ;
+
+   call SelectCommandesEnCoursDeLivraison();
+
+
+2. Calcul du delai moyen de livraison a executer sur phpmyadmin
+DELIMITER //
+
+CREATE PROCEDURE CalculateDélaiMoyen()
+BEGIN
+    SELECT AVG(DATEDIFF(com_date, p.p_date)) AS délai_moyen
+    FROM commande c
+    JOIN paiement p ON c.paiement_id = p.id
+    WHERE c.paiement_id IS NOT NULL;
+END //
+
+DELIMITER ;
+
+call CalculateDélaiMoyen();
+
+3. Mise a jour du total de la commande a executer sur phpStorm
+
+    CREATE TRIGGER maj_total AFTER INSERT ON `lignedecommande`
+        FOR EACH ROW
+    BEGIN
+        DECLARE id_c INT;
+        DECLARE tot DOUBLE;
+        SET id_c = NEW.id; -- nous captons le numéro de commande concerné
+        SET tot = (SELECT sum(prix*quantite) FROM `lignedecommande` WHERE id=id_c); -- on recalcul le total
+        UPDATE `commande` SET com_total=tot WHERE id=id_c; -- on stocke le total dans la table commande
+    END;
+
+    insert into lignedecommande(commande_id, produit_id, quantite, prix) VALUES (1, 1, 3, 50);
+
+
+4. maj_total_update
+CREATE TRIGGER maj_total_update AFTER UPDATE ON lignedecommande
+    FOR EACH ROW
+BEGIN
+    DECLARE id_c INT;
+    DECLARE tot DOUBLE;
+    SET id_c = NEW.commande_id; -- nous captons le numéro de commande concerné
+    SET tot = (SELECT sum(prix*quantite) FROM lignedecommande WHERE commande_id=id_c); -- on recalcul le total
+    UPDATE commande SET com_total=tot WHERE id=id_c; -- on stocke le total dans la table commande
+END;
+
+update lignedecommande
+set prix = 200
+where produit_id = 1;

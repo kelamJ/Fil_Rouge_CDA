@@ -1,0 +1,123 @@
+
+<section class="footer">
+    <div class="footer-row">
+        <div class="footer-col">
+            <h4>Besoin d'aide ?</h4>
+            <ul class="links">
+                <li><a href="#">A-propos</a></li>
+                <li><a href="#">Foire aux Questions</a></li>
+                <li><a href="#">Nos Services</a></li>
+                <li><a href="#">Nous Contacter</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Explorez</h4>
+            <ul class="links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Produits</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Panier de commande</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Légal</h4>
+            <ul class="links">
+                <li><a href="#">Pays : France</a></li>
+                <li><a href="#">Politique de confidentialité et cookies</a></li>
+                <li><a href="#">Sécurité</a></li>
+                <li><a href="#">Informations sur la société</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Inscrivez-vous</h4>
+            <p>
+                Inscrivez-vous sur notre site pour être identifié et accéder à la gestion de votre profil.
+            </p>
+                <button type="button" class="button btn btn-sm mb-3">S'inscrire</button>
+            <div class="icons">
+                <i class="fa-brands fa-facebook-f bx-sm"></i>
+                <i class="fa-brands fa-twitter bx-sm"></i>
+                <i class="fa-brands fa-linkedin bx-sm"></i>
+                <i class="fa-brands fa-github bx-sm"></i>
+            </div>
+        </div>
+    </div>
+</section>
+<script id="vertexShader" type="x-shader/x-vertex">
+    attribute vec4 position;
+
+    void main() {
+      gl_Position = vec4( position );
+    }
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+    #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+    #else
+    precision mediump float;
+    #endif
+
+    uniform vec2 u_resolution;
+    uniform float u_time;
+    uniform vec2 u_mouse;
+
+
+    //Taken from Book of Shaders
+    //https://thebookofshaders.com/edit.php#11/2d-gnoise.frag
+    vec2 random2(vec2 st){
+      st = vec2( dot(st,vec2(127.1,311.7)),
+                 dot(st,vec2(269.5,183.3)) );
+      return -1.0 + 2.0*fract(sin(st)*43758.5453123);
+    }
+
+    // Gradient Noise by Inigo Quilez - iq/2013
+    // https://www.shadertoy.com/view/XdXGW8
+    float noise(vec2 st) {
+        vec2 i = floor(st);
+        vec2 f = fract(st);
+
+        vec2 u = f*f*(3.0-2.0*f);
+
+        return mix( mix( dot( random2(i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ),
+                         dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
+                    mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
+                         dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
+    }
+
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_resolution;
+
+      float waveOffset = 0.3;
+      float waveCenter = 1.;
+      float waveFocus = 0.25;
+      float waveSpeed = 2.; //Lower faster.
+
+      float wMin = waveCenter - waveFocus;
+      float wMax = waveCenter + waveFocus;
+
+      //Smoothly extend on the x axis without stretching the noise
+    uv.x *= u_resolution.x/u_resolution.y;
+    uv.x += 1787.74328; //random starting seed
+    uv.y *= 2.;
+
+    float rn = noise( vec2(uv.x, u_time / waveSpeed));
+    float ry = uv.y - rn;
+    float r = smoothstep(wMin, wMax, ry);
+
+    float bn = noise( vec2(uv.x, u_time / waveSpeed - waveOffset));
+    float by = uv.y - bn;
+    float b = smoothstep(wMin, wMax, by);
+
+    float gn = noise( vec2(uv.x, u_time / waveSpeed + waveOffset));
+    float gy = uv.y - gn;
+    float g = smoothstep(wMin, wMax, gy);
+
+    //float a = (r + g + b) / 3.0;
+
+    gl_FragColor = vec4(r, b, g, 1.0);
+  }
+</script>
