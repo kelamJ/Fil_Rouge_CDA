@@ -256,12 +256,12 @@ img {
 /*Button*/
 .button {
     position: relative;
-    padding: 6px 22px;
     background: #FAF9F6 !important;
-    border-radius: 6px;
+    padding: 4px 16px;
+    height: 2rem;
+    font-size: 14px;    border-radius: 6px;
     color: #4A0404;
     border: none;
-    font-size: 18px;
     font-weight: 400;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -291,13 +291,13 @@ img {
 .button.animate::before {
     top: -70%;
     background-image: radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, #191970 20%, transparent 30%),
+    radial-gradient(circle, transparent 20%, #c23943 20%, transparent 30%),
     radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, transparent 15%, #191970 15%, transparent 20%),
+    radial-gradient(circle, transparent 15%, #c23943 15%, transparent 20%),
     radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #191970 20%, transparent 20%),
+    radial-gradient(circle, #c23943 20%, transparent 20%),
     radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #191970 20%, transparent 20%);
+    radial-gradient(circle, #c23943 20%, transparent 20%);
     background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 18% 18%;
     background-position: 5% 90%, 10% 90%, 10% 90%,15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
     animation: topBubbles 0.6s ease-in-out infinite;
@@ -314,13 +314,13 @@ img {
 
 .button.animate::after {
     bottom: -70%;
-    background-image:     radial-gradient(circle, #191970 20%, transparent 20%),
+    background-image:     radial-gradient(circle, #c23943 20%, transparent 20%),
     radial-gradient(circle, transparent 15%, #E97451 15%, transparent 20%),
-    radial-gradient(circle, #191970 20%, transparent 20%),
+    radial-gradient(circle, #c23943 20%, transparent 20%),
     radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #191970 20%, transparent 20%),
+    radial-gradient(circle, #c23943 20%, transparent 20%),
     radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #191970 20%, transparent 20%);
+    radial-gradient(circle, #c23943 20%, transparent 20%);
     background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
     background-position: 10% 0%, 30% 10%, 55% 0%, 70% 0%, 85% 0%, 70% 0%, 70% 0%;
     animation: bottomBubbles 0.6s ease-in-out infinite;

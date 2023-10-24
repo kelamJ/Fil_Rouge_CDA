@@ -5,55 +5,20 @@
 {% block body %}
     <div class="container">
         <div class="d-flex justify-content-center align-items-center row row-cols-1 row-cols-md-3 mt-5">
-            <div class="bg-image hover-overlay ripple mt-5 anim-card" style="width: 20rem;--color: #fff" data-mdb-ripple-color="light">
+            {% for categories in categorie %}
+                <div class="bg-image hover-overlay ripple mt-5 anim-card" style="width: 20rem;--color: #fff" data-mdb-ripple-color="light">
                 <div class="card mt-5 mx-auto">
                     <img class="card-img-top" src="/assets/css/image/classic-board.jpg" alt="Card image cap">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
 
                 </div>
                 <div class="card-body text-white rounded-bottom">
-                    <h4 class="card-title">Classics</h4>
+                    <h4 class="card-title">{{ categories.catNom }}</h4>
                     <p class="card-text"></p>
                     <button type="button" class="button mb-3 btn-custom">Consulter</button>
                 </div>
             </div>
-
-            <div class="bg-image hover-overlay ripple mt-5" style="width: 20rem;" data-mdb-ripple-color="light">
-                <div class="card mt-5 mx-auto">
-                    <img class="card-img-top" src="/assets/css/image/img3.jpeg" alt="Card image cap">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-
-                </div>
-                <div class="card-body text-white rounded-bottom">
-                    <h4 class="card-title">Longboards</h4>
-                    <p class="card-text"></p>
-                    <button type="button" class="button btn-custom mb-3">Consulter</button>
-                </div>
-            </div>
-
-            <div class="bg-image hover-overlay ripple mt-5" style="width: 20rem;" data-mdb-ripple-color="light">
-                <div class="card mt-5 mx-auto">
-                    <img style="height: 18.5rem;" class="card-img-top" src="/assets/css/image/img2.png" alt="Card image cap">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-                <div class="card-body text-white rounded-bottom">
-                    <h4 class="card-title">Electrique</h4>
-                    <p class="card-text"></p>
-                    <button id="" type="button" class="button btn-custom mb-3">Consulter</button>
-                </div>
-            </div>
-
-            <div class="bg-image hover-overlay ripple mt-5" style="width: 20rem;" data-mdb-ripple-color="light">
-                <div class="card mt-5 mx-auto">
-                    <img style="height: 18.5rem;" class="card-img-top" src="/assets/css/image/cruiser.jpg" alt="Card image cap">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-                <div class="card-body text-white rounded-bottom">
-                    <h5 class="card-title">Cruisers</h5>
-                    <p class="card-text"></p>
-                    <button type="button" class="button btn-custom mb-3">Consulter</button>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

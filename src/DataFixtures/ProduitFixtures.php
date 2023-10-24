@@ -22,7 +22,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $product1 = new Produit();
-        $cat1 = $this->getReference('Skateboard');
+        $cat1 = $this->getReference('Classics');
         $fourni = $this->getReference('fourni1');
         $product1->setProNom('Skate GLOBE')
             ->setProDescription('Planche en bois avec 4 roue en plastique.')
@@ -37,30 +37,30 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
 
 
         $product2 = new Produit();
-        $cat2 = $this->getReference('Cruiser');
+        $cat5 = $this->getReference('Cruisers');
         $product2->setProNom('Cruiser PENNY')
             ->setProDescription('Petite planche en plastique avec 4 roue en gomme.')
             ->setPrixAchat('10')
             ->setPrixVente('20')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
-            ->setCategorie($cat2);
+            ->setCategorie($cat5);
         $manager->persist($product2);
 
         $product3 = new Produit();
-        $cat3 = $this->getReference('Longboard');
+        $cat2 = $this->getReference('Longboards');
         $product3->setProNom('Long LOADED')
             ->setProDescription('Grande planche en bois et 4 roue en gomme.')
             ->setPrixAchat('110')
             ->setPrixVente('100')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
-            ->setCategorie($cat3);
+            ->setCategorie($cat2);
 
         $manager->persist($product3);
 
         $product4 = new Produit();
-        $cat4 = $this->getReference('Hoverboard');
+        $mainCat2 = $this->getReference('electrique');
 
         $product4->setProNom('Hover HUMMER')
             ->setProDescription('Grande planche en bois et 4 roue en gomme.')
@@ -68,12 +68,12 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('200')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
-            ->setCategorie($cat4);
+            ->setCategorie($mainCat2);
 
         $manager->persist($product4);
 
         $product5 = new Produit();
-        $cat5 = $this->getReference('Onewheel');
+        $mainCat2 = $this->getReference('electrique');
 
         $product5->setProNom('Onewheel PINT')
             ->setProDescription('Un format pocket qui va vous faire aimer vos déplacements au quotidien. Le Onewheel Pint est un concentré de technologie, léger, réactif et puissant.')
@@ -81,7 +81,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('500')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
-            ->setCategorie($cat5);
+            ->setCategorie($mainCat2);
 
         $manager->persist($product5);
 
