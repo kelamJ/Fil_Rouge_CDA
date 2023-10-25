@@ -250,6 +250,17 @@ img {
     border-radius: 5px 5px 0 0;
 }
 
+/*FORM*/
+
+.place-color {
+    border-radius: 25px;
+    color: white !important;
+}
+
+.place-color::placeholder {
+    color: white !important;
+}
+
 .form-style {
     color:  #FAF9F6;
 }

@@ -9,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse email.')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -35,6 +35,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^\w+/')]
     #[Assert\Length(min: 3, minMessage: 'Le nom doit faire au minimum 3 caractères')]
     private ?string $nom = null;
 
@@ -46,8 +47,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 10,max: 10, minMessage: 'Le numéro de téléphone doit être composer de 10 chiffres.',
-        maxMessage: 'Le numéro de téléphone doit être composer de 10 chiffres.')]
+    #[Assert\Regex(
+        pattern: '^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$^',
+        message: 'Votre numéro de téléphone doit faire 10 chiffres'
+)]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]

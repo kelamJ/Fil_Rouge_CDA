@@ -21,11 +21,11 @@
         <div class="card-body text-white rounded-7 mt-2 mb-2 border border-light">
             <div class="form-group row">
                 <h1 class="h2 mt-3 font-weight-normal "></h1>
-                <p>Vous n'avez pas encore de compte ? <br> <a class="" href="{{ path('app_register') }}">Inscrivez-Vous</a> </p>
+                <p>Vous n'avez pas encore de compte ? <br> <a style="text-decoration-line: underline; font-weight: bold;" class="" href="{{ path('app_register') }}">Inscrivez-Vous</a> </p>
                 <form method="post" class="center-card">
 
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-50" autocomplete="email" required autofocus>
-                    <input type="password" name="password" id="inputPassword" class="form-control w-50" autocomplete="current-password" required>
+                    <input type="email" value="{{ last_username }}" name="email" placeholder="Email" id="inputEmail" style="background: #551e2e; border-radius: 15px;" class="form-control w-50 place-color" autocomplete="email" required autofocus>
+                    <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" style="background: #551e2e; border-radius: 15px;" class="form-control w-50 place-color mt-3" autocomplete="current-password" required>
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <button type="submit" class="button btn-custom mt-3 mb-3">Se connecter</button>
