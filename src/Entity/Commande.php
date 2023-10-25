@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -30,6 +31,7 @@ class Commande
     private ?\DateTimeInterface $com_date = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    #[Assert\Assert\PositiveOrZero(message: 'Le prix ne peut pas être négatif')]
     private ?string $com_total = null;
 
     #[ORM\Column(length: 255)]

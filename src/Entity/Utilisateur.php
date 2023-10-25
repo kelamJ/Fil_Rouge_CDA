@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraint as Assert;
+
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -20,6 +22,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: 'L\'email ne peut pas être vide.')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -32,24 +35,30 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, minMessage: 'Le nom doit faire au minimum 3 caractères')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, minMessage: 'Le prénom doit faire au minimum 3 caractères')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 10,max: 10, minMessage: 'Le numéro de téléphone doit être composer de 10 chiffres.',
+        maxMessage: 'Le numéro de téléphone doit être composer de 10 chiffres.')]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $u_adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, minMessage: 'Le nom de ville doit faire au minimum 3 caractères')]
     private ?string $u_ville = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 5, minMessage: 'Le code postal doit faire au minimum 5 caractères')]
     private ?string $u_cp = null;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class)]
