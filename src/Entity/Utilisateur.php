@@ -35,11 +35,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex('/^\w+/')]
+    #[Assert\Regex(pattern: '/^[A-Za-z]+$/', message: 'Veuillez saisir un nom valide')]
     #[Assert\Length(min: 3, minMessage: 'Le nom doit faire au minimum 3 caractères')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(pattern: '/^[A-Za-z]+$/', message: 'Veuillez saisir un prénom valide')]
     #[Assert\Length(min: 3, minMessage: 'Le prénom doit faire au minimum 3 caractères')]
     private ?string $prenom = null;
 
@@ -48,20 +49,21 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     #[Assert\Regex(
-        pattern: '^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$^',
+        pattern: '/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/',
         message: 'Votre numéro de téléphone doit faire 10 chiffres'
 )]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(pattern: '/^[0-9A-Za-z\s\.,#\'-]+$/', message: 'Veuillez saisir une adresse valide')]
     private ?string $u_adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 3, minMessage: 'Le nom de ville doit faire au minimum 3 caractères')]
+    #[Assert\Regex(pattern: '/^[A-Za-z\s-]+$/', message: 'Veuillez saisir une ville qui existe')]
     private ?string $u_ville = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 5, minMessage: 'Le code postal doit faire au minimum 5 caractères')]
+    #[Assert\Regex(pattern: '/^\d{5}$/', message: 'Le code postal doit se composer de 5 chiffres')]
     private ?string $u_cp = null;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class)]

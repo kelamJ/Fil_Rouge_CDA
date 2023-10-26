@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['style' => 'background: #551e2e; border-radi us: 15px;', 'autocomplete' => 'new-password', 'class' => 'form-control place-color', 'placeholder' => 'Mot de passe'
+                'attr' => ['style' => 'background: #551e2e; border-radius: 15px;', 'autocomplete' => 'new-password', 'class' => 'form-control place-color', 'placeholder' => 'Mot de passe'
                 ],
 
                 'constraints' => [

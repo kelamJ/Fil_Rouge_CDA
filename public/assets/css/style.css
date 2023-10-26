@@ -233,12 +233,23 @@ body {
     }
 }
 /*CARD*/
+.card-anim {
+    transition: transform 0.2s ease; /* Animation de transition fluide */
+}
+
+.card-anim:hover {
+    transform: scale(1.05); /* Léger effet de zoom lors du survol */
+}
+
 .card-body {
     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
     backdrop-filter: blur(5px);
     text-align: center !important;
 }
 
+{
+    transform: scale3d(1.01,1.01,1.01);
+}
 .center-card {
     display: flex;
     flex-direction: column;
@@ -253,7 +264,6 @@ img {
 /*FORM*/
 
 .place-color {
-    border-radius: 25px;
     color: white !important;
 }
 
@@ -279,7 +289,7 @@ img {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 .btn-custom:hover {
-    color: #E97451;
+    color: #c23943;
     transition: color .3s;
 }
 
