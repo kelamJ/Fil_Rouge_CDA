@@ -34,7 +34,7 @@ class ProduitCrudController extends AbstractCrudController
             BooleanField::new('is_active')
                 ->renderAsSwitch(false),
             TextField::new('categorie'),
-            CollectionField::new('fournisseur'),
+            TextField::new('fournisseur'),
         ];
     }
 }

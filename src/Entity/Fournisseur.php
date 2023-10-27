@@ -184,6 +184,6 @@ class Fournisseur
 
     public function __toString(): string
     {
-        return $this->getFournisseur();
+        return $this->getNom();
     }
 }

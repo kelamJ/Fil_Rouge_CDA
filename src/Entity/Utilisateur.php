@@ -55,16 +55,19 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex(pattern: '/^[0-9A-Za-z\s\.,#\'-]+$/', message: 'Veuillez saisir une adresse valide')]
+    #[Assert\Regex(pattern: '/^[A-Za-zÀ-ÿ\s-]+$/', message: 'Veuillez saisir une adresse valide')]
     private ?string $u_adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex(pattern: '/^[A-Za-z\s-]+$/', message: 'Veuillez saisir une ville qui existe')]
+    #[Assert\Regex(pattern: '/^[A-Za-zÀ-ÿ\s-]+$/', message: 'Veuillez saisir une ville qui existe')]
     private ?string $u_ville = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Regex(pattern: '/^\d{5}$/', message: 'Le code postal doit se composer de 5 chiffres')]
     private ?string $u_cp = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $is_verified = false;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class)]
     private Collection $utilisateur;
@@ -98,7 +101,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->prenom . ' ' . $this->nom;
+        return (string) $this->email;
     }
 
     /**
@@ -228,6 +231,21 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUCp(string $u_cp): static
     {
         $this->u_cp = $u_cp;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    /**
+     * @param bool|null $is_verified
+     */
+    public function setIsVerified(?bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }
