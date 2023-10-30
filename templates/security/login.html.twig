@@ -28,6 +28,7 @@
                     <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" style="background: #551e2e; border-radius: 15px;" class="form-control w-50 place-color mt-3" autocomplete="current-password" required>
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <a href="{{ path('forgotten_password') }}">Mot de passe oublié ?</a>
                     <button type="submit" class="button btn-custom mt-3 mb-3">Se connecter</button>
                 </form>
             </div>
