@@ -101,5 +101,21 @@ class RegistrationController extends AbstractController
         }
         // Ici un problème se pose dans le token
         $this->addFlash('danger', 'Le token est invalide ou a expiré');
-        return $this->redirectToRoute('app_login');    }
+        return $this->redirectToRoute('app_login');
+    }
+
+    #[Route('/renvoiverif', name: 'resend_verif')]
+public function resendVerif(JWTService $jwt, SendMailService $mail, UtilisateurRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user){
+            $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
+            return $this->redirectToRoute('app_login');
+        }
+        if (!$user->getIsVerified){
+            $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
+            return $this->redirectToRoute('profil');
+        }
+    }
 }
