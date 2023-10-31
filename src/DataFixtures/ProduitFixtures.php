@@ -7,6 +7,7 @@ use App\Entity\Produit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Faker\Factory;
 use Faker\Generator;
 
@@ -14,7 +15,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
 {
     private Generator $faker;
 
-    public function __construct()
+    public function __construct(private SluggerInterface $slugger)
     {
         $this->faker = Factory::create('fr_FR');
     }
@@ -30,6 +31,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('50')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product1->getProNom())->lower())
             ->setCategorie($cat1)
             ->setFournisseur($fourni);
         $manager->persist($product1);
@@ -44,6 +46,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('20')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product2->getProNom())->lower())
             ->setCategorie($cat5);
         $manager->persist($product2);
 
@@ -55,6 +58,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('100')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product3->getProNom())->lower())
             ->setCategorie($cat2);
 
         $manager->persist($product3);
@@ -68,6 +72,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('200')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product4->getProNom())->lower())
             ->setCategorie($mainCat2);
 
         $manager->persist($product4);
@@ -81,6 +86,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setPrixVente('500')
             ->setProImage('https://picsum.photos/200/300')
             ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product5->getProNom())->lower())
             ->setCategorie($mainCat2);
 
         $manager->persist($product5);

@@ -24,9 +24,12 @@ class CommandeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            IdField::new('utilisateur'),
-            DateField::new('com_date'),
+            IdField::new('id')
+                ->hideOnForm(),
+            IdField::new('utilisateur')
+                ->setFormTypeOption('disabled', 'disabled'),
+            DateField::new('com_date')
+                ->setFormTypeOption('disabled', 'disabled'),
             IdField::new('statut'),
             CollectionField::new('com_total'),
             TextField::new('com_adresse'),

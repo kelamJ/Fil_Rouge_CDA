@@ -9,7 +9,7 @@
 
     <nav class="navbar-css">
         <a href="{{ path('accueil') }}" style="--i:0;">Accueil</a>
-        <a href="#" style="--i:1;">Produits</a>
+        <a href="{{ path('produit_index') }}" style="--i:1;">Produits</a>
         <a href="#" style="--i:3;">Contact</a>
         {% if app.user %}
             <a href="{{ path('profil') }}"><i class='bx bx-user bx-sm' style="--i:5;"></i></a>

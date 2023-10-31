@@ -39,7 +39,7 @@ class UtilisateurFixtures extends Fixture
                 ->setPrenom($this->faker->firstName)
                 ->setEmail($this->faker->email)
                 ->setPassword($this->passwordEncoder->hashPassword($user, 'password'))
-                ->setType($this->faker->randomElement(['Particulier', 'Professionnel', 'Commercial']))
+                ->setType($this->faker->randomElement(['Particulier', 'Professionnel']))
                 ->setTelephone($this->faker->phoneNumber)
                 ->setRoles(['ROLE_USER'])
                 ->setUAdresse($this->faker->streetAddress)

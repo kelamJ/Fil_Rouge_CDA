@@ -65,8 +65,8 @@ class RegistrationFormType extends AbstractType
         'placeholder' => 'Particulier ou Professionnel'
     ],
                 'choices' => [
-                    'Particulier' => true,
-                    'Professionnel' => false,
+                    'Particulier' => 'Particulier',
+                    'Professionnel' => 'Professionnel',
                 ]
     ])
             ->add('telephone', TextType::class, [
