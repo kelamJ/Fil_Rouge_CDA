@@ -29,7 +29,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setProDescription('Planche en bois avec 4 roue en plastique.')
             ->setPrixAchat('40')
             ->setPrixVente('50')
-            ->setProImage('https://picsum.photos/200/300')
+            ->setImage('https://picsum.photos/200/300')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product1->getProNom())->lower())
             ->setCategorie($cat1)
@@ -44,7 +44,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setProDescription('Petite planche en plastique avec 4 roue en gomme.')
             ->setPrixAchat('10')
             ->setPrixVente('20')
-            ->setProImage('https://picsum.photos/200/300')
+            ->setImage('https://picsum.photos/200/300')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product2->getProNom())->lower())
             ->setCategorie($cat5);
@@ -56,7 +56,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setProDescription('Grande planche en bois et 4 roue en gomme.')
             ->setPrixAchat('110')
             ->setPrixVente('100')
-            ->setProImage('https://picsum.photos/200/300')
+            ->setImage('https://picsum.photos/200/300')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product3->getProNom())->lower())
             ->setCategorie($cat2);
@@ -70,7 +70,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setProDescription('Grande planche en bois et 4 roue en gomme.')
             ->setPrixAchat('210')
             ->setPrixVente('200')
-            ->setProImage('https://picsum.photos/200/300')
+            ->setImage('https://picsum.photos/200/300')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product4->getProNom())->lower())
             ->setCategorie($mainCat2);
@@ -84,7 +84,7 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
             ->setProDescription('Un format pocket qui va vous faire aimer vos déplacements au quotidien. Le Onewheel Pint est un concentré de technologie, léger, réactif et puissant.')
             ->setPrixAchat('510')
             ->setPrixVente('500')
-            ->setProImage('https://picsum.photos/200/300')
+            ->setImage('https://picsum.photos/200/300')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product5->getProNom())->lower())
             ->setCategorie($mainCat2);

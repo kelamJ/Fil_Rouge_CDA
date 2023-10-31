@@ -35,7 +35,7 @@ class Produit
     private ?string $prix_vente = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $pro_image = null;
+    private ?string $image = null;
 
     #[ORM\Column]
     private ?bool $is_active = null;
@@ -118,14 +118,14 @@ class Produit
         return $this;
     }
 
-    public function getProImage(): ?string
+    public function getImage(): ?string
     {
-        return $this->pro_image;
+        return $this->image;
     }
 
-    public function setProImage(string $pro_image): static
+    public function setImage(string $image): static
     {
-        $this->pro_image = $pro_image;
+        $this->image = $image;
 
         return $this;
     }

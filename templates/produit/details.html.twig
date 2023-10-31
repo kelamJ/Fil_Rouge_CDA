@@ -4,9 +4,17 @@
 
 {% block body %}
     <div class="container">
-        <div class="d-flex justify-content-center align-items-center mt-5 text-white">
+        <div class="mt-5 text-white">
             <h1>Page détail de {{ produit.proNom }}</h1>
-
+        </div>
+        <div class="mt-5 text-white">
+            <p>Catégorie : {{ produit.categorie.catNom }}</p>
+            <p>Description : {{ produit.proDescription }}</p>
+            <p>Prix : {{ produit.prixVente }} €</p>
+            <div>
+                <img src="{{ asset('assets/uploads/produits/') ~ produit.image }}" alt="">
+            </div>
+            <a class="btn btn-primary" href="{{ path('produit_index') }}">Retour</a>
         </div>
     </div>
 {% endblock %}
