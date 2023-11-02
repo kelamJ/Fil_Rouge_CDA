@@ -35,7 +35,9 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Sk8');
+            ->setTitle('Sk8')
+            ->renderContentMaximized()
+            ->setFaviconPath('favicon.svg');
     }
 
     public function configureMenuItems(): iterable

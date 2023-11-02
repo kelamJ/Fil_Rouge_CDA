@@ -20,8 +20,16 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'details')]
-public function details(Produit $produit): Response
+    public function details(Produit $produit): Response
     {
         return $this->render('produit/details.html.twig', compact('produit'));
     }
+
+//    #[Route('/admin-produits', name: 'admin')]
+//    public function admin(ProduitRepository $produitRepository): Response
+//    {
+//        return $this->render('produit/index.html.twig', [
+//            'produit' => $produitRepository->findBy([], ['id' => 'asc'])
+//        ]);
+//    }
 }
