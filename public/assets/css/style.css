@@ -237,6 +237,7 @@ body {
     transition: transform 0.2s ease; /* Animation de transition fluide */
 }
 
+
 .card-anim:hover {
     transform: scale(1.05); /* Léger effet de zoom lors du survol */
 }

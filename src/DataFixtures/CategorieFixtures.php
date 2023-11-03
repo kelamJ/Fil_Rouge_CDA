@@ -28,21 +28,21 @@ class CategorieFixtures extends Fixture
         $mainCat2 = new Categorie();
         $mainCat2->setCatNom('Électrique')
             ->setCatDescription('Type de planche qui utilise un moteur électrique pour avancer')
-            ->setCatImage('cat-elec');
+            ->setCatImage('cat-elec.png');
         $manager->persist($mainCat2);
         $this->addReference('electrique', $mainCat2);
 
         $cat1 = new Categorie();
         $cat1->setCatNom('Classics')
             ->setCatDescription('Simple skate')
-            ->setCatImage('cat-classic');
+            ->setCatImage('cat-classic.jpg');
         $manager->persist($cat1);
         $this->addReference('Classics', $cat1);
 
         $cat2 = new Categorie();
         $cat2->setCatNom('Longboards')
             ->setCatDescription('Long skate')
-            ->setCatImage('cat-longboard');
+            ->setCatImage('cat-longboard.jpeg');
         $manager->persist($cat2);
         $this->addReference('Longboards', $cat2);
 
@@ -50,7 +50,7 @@ class CategorieFixtures extends Fixture
         $cat5 = new Categorie();
         $cat5->setCatNom('Cruisers')
             ->setCatDescription('Petit skate')
-            ->setCatImage('cat-cruiser');
+            ->setCatImage('cat-cruiser.jpg');
         $manager->persist($cat5);
         $this->addReference('Cruisers', $cat5);
 
