@@ -112,6 +112,10 @@ body {
 /*    cursor: pointer;*/
 /*}*/
 
+.product-content {
+    margin-bottom: 20rem !important;
+}
+
 .footer {
     margin-top: 10px;
     position: fixed;

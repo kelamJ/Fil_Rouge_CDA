@@ -28,6 +28,8 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $pro_description = null;
 
+    #[ORM\Column]
+    private ?int $pro_stock = null;
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix_achat = null;
 
@@ -90,6 +92,18 @@ class Produit
     public function setProDescription(string $pro_description): static
     {
         $this->pro_description = $pro_description;
+
+        return $this;
+    }
+
+    public function getProStock(): ?int
+    {
+        return $this->pro_stock;
+    }
+
+    public function setProStock(int $pro_stock): static
+    {
+        $this->pro_stock = $pro_stock;
 
         return $this;
     }

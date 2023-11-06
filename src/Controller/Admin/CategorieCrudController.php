@@ -25,8 +25,9 @@ class CategorieCrudController extends AbstractCrudController
             IdField::new('id'),
             TextField::new('cat_nom'),
             TextField::new('cat_description'),
-            ImageField::new('cat_image'),
-            IdField::new('cat_sub'),
+            ImageField::new('cat_image')
+                ->setUploadDir('/public/assets/uploads/categories/'),
+        IdField::new('cat_sub')
         ];
     }
 

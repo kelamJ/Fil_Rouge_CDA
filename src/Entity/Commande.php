@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,6 +16,9 @@ class Commande
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column(type: 'string', length: 20, unique: true)]
+    private $reference;
 
     #[ORM\ManyToOne(inversedBy: 'statut')]
     private ?Statut $statut = null;
@@ -46,9 +51,29 @@ class Commande
     #[ORM\Column(nullable: true)]
     private ?int $reduction = null;
 
+    #[ORM\OneToMany(mappedBy: 'commandeDetails', targetEntity: Lignedecommande::class, cascade: ['persist'])]
+    private Collection $detailCommande;
+
+    public function __construct()
+    {
+        $this->detailCommande = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
     }
 
     public function getStatut(): ?Statut
@@ -167,6 +192,36 @@ class Commande
     public function setReduction(?int $reduction): static
     {
         $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lignedecommande>
+     */
+    public function getDetailCommande(): Collection
+    {
+        return $this->detailCommande;
+    }
+
+    public function addDetailCommande(Lignedecommande $detailCommande): static
+    {
+        if (!$this->detailCommande->contains($detailCommande)) {
+            $this->detailCommande->add($detailCommande);
+            $detailCommande->setCommandeDetails($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailCommande(Lignedecommande $detailCommande): static
+    {
+        if ($this->detailCommande->removeElement($detailCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($detailCommande->getCommandeDetails() === $this) {
+                $detailCommande->setCommandeDetails(null);
+            }
+        }
 
         return $this;
     }

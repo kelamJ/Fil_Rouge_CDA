@@ -3,18 +3,27 @@
 {% block title %}Détail produit{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="mt-5 text-white">
-            <h1>Page détail de {{ produit.proNom }}</h1>
-        </div>
-        <div class="mt-5 text-white">
-            <p>Catégorie : {{ produit.categorie.catNom }}</p>
-            <p>Description : {{ produit.proDescription }}</p>
-            <p>Prix : {{ produit.prixVente }} €</p>
-            <div>
-                <img src="{{ asset('assets/uploads/produits/') ~ produit.image }}" alt="">
+    <div class="product-content">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="bg-image hover-overlay ripple mt-5 card-anim" style="width: 18rem; --color: #fff" data-mdb-ripple-color="light">
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="{{ asset('assets/uploads/produits/') ~ produit.image }}" alt="Card image">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </div>
+                    <div class="card-body text-white rounded-bottom">
+                        <h4 class="card-title">{{ produit.proNom }}</h4>
+                        <p class="card-text">{{ produit.categorie.catNom }}</p>
+                        <p class="card-text">{{ produit.proDescription }}</p>
+                        <p class="card-text">{{ produit.prixVente }} €</p>
+                        {% if produit.proStock > 0 %}
+                            <a href="{{ path('cart_add', {id: produit.id}) }}" class="button mb-3 btn-custom">Ajouter au panier</a>
+                        {% else %}
+                            <p class="text-danger">Temporairement en rupture de stock</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <a class="btn btn-primary" href="{{ path('produit_index') }}">Retour</a>
         </div>
     </div>
 {% endblock %}

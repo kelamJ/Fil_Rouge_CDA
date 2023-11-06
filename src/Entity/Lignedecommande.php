@@ -26,6 +26,9 @@ class Lignedecommande
     #[ORM\ManyToOne(inversedBy: 'lignedecommandes')]
     private ?Commande $commande = null;
 
+    #[ORM\ManyToOne(inversedBy: 'detailCommande')]
+    private ?Commande $commandeDetails = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Lignedecommande
     public function setCommande(?Commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getCommandeDetails(): ?Commande
+    {
+        return $this->commandeDetails;
+    }
+
+    public function setCommandeDetails(?Commande $commandeDetails): static
+    {
+        $this->commandeDetails = $commandeDetails;
 
         return $this;
     }

@@ -32,6 +32,7 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
                 ->setComVille($this->faker->city)
                 ->setComCp($this->faker->postcode)
                 ->setStatut($statut1)
+                ->setReference(uniqid())
                 ->setPaiement($pay2)
                 ->setUtilisateur($user)
                 ->setLivraison($livraison1);

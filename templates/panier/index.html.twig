@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <div class="product-content">
+        <main class="container mt-5">
+            <section class="row text-white">
+                <div class="col-12">
+                    <h1>Panier</h1>
+                    <table class="table text-white">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for element in data %}
+                            <tr>
+                                <td>{{ element.produit.proNom }}</td>
+                                <td>{{ element.produit.prixVente }} €</td>
+                                <td>{{ element.quantite }}</td>
+                                <td>{{ element.quantite * element.produit.prixVente }} €</td>
+                                <td>
+                                    <a href="{{ path('cart_add', {id: element.produit.id}) }}" class="btn btn-success">+</a>
+                                    <a href="{{ path('cart_remove', {id: element.produit.id}) }}" class="btn btn-warning">-</a>
+                                    <a href="{{ path('cart_delete', {id: element.produit.id}) }}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Votre panier est vide</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td>{{ total }} €</td>
+                            <td>
+                                <a href="{{ path('cart_empty') }}" class="btn btn-danger">Vider</a>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <a href="{{ path('app_orders_add') }}" class="btn btn-primary">Valider le panier</a>
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}
