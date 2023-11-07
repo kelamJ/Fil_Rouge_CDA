@@ -13,7 +13,7 @@
         <a href="#" style="--i:3;">Contact</a>
         {% if app.user %}
             <a href="{{ path('profil') }}"><i class='bx bx-user bx-sm' style="--i:5;"></i></a>
-            <a href="#"><i class='bx bx-cart bx-sm' style="--i:4;"></i></a>
+            <a href="{{ path('cart_index') }}"><i class='bx bx-cart bx-sm' style="--i:4;"></i></a>
             <a href="{{ path('app_logout') }}"><i class='bx bxs-log-out bx-flashing' ></i></a>
         {% else %}
             <a href="{{ path('app_login') }}"><i class='bx bx-log-in bx-tada' ></i></a>

@@ -20,8 +20,8 @@ class Commande
     #[ORM\Column(type: 'string', length: 20, unique: true)]
     private $reference;
 
-    #[ORM\ManyToOne(inversedBy: 'statut')]
-    private ?Statut $statut = null;
+    #[ORM\Column(length: 50)]
+    private ?string $com_statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'paiement')]
     private ?Paiement $paiement = null;
@@ -39,13 +39,13 @@ class Commande
     #[Assert\Assert\PositiveOrZero(message: 'Le prix ne peut pas être négatif')]
     private ?string $com_total = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $com_adresse = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $com_ville = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $com_cp = null;
 
     #[ORM\Column(nullable: true)]
@@ -76,14 +76,14 @@ class Commande
         return $this;
     }
 
-    public function getStatut(): ?Statut
+    public function getComStatut(): ?string
     {
-        return $this->statut;
+        return $this->com_statut;
     }
 
-    public function setStatut(?Statut $statut): static
+    public function setComStatut(string $com_statut): static
     {
-        $this->statut = $statut;
+        $this->com_statut = $com_statut;
 
         return $this;
     }

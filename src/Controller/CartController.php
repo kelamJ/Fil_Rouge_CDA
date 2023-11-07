@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Produit;
@@ -21,7 +22,7 @@ class CartController extends AbstractController
         $data = [];
         $total = 0;
 
-        foreach($panier as $id => $quantite){
+        foreach ($panier as $id => $quantite) {
             $produit = $produitRepository->find($id);
 
             $data[] = [
@@ -46,9 +47,9 @@ class CartController extends AbstractController
 
         // On ajoute le produit dans le panier s'il n'y est pas encore
         // Sinon on incrémente sa quantité
-        if(empty($panier[$id])){
+        if (empty($panier[$id])) {
             $panier[$id] = 1;
-        }else{
+        } else {
             $panier[$id]++;
         }
 
@@ -69,10 +70,10 @@ class CartController extends AbstractController
 
         // On retire le produit du panier s'il n'y a qu'1 exemplaire
         // Sinon on décrémente sa quantité
-        if(!empty($panier[$id])){
-            if($panier[$id] > 1){
+        if (!empty($panier[$id])) {
+            if ($panier[$id] > 1) {
                 $panier[$id]--;
-            }else{
+            } else {
                 unset($panier[$id]);
             }
         }
@@ -92,7 +93,7 @@ class CartController extends AbstractController
         // On récupère le panier existant
         $panier = $session->get('panier', []);
 
-        if(!empty($panier[$id])){
+        if (!empty($panier[$id])) {
             unset($panier[$id]);
         }
 

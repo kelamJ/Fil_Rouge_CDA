@@ -30,7 +30,8 @@ class UtilisateurFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setUAdresse($this->faker->streetAddress)
             ->setUVille($this->faker->city)
-            ->setUCp($this->faker->postcode);
+            ->setUCp($this->faker->postcode)
+            ->setIsVerified(1);
         $manager->persist($admin);
 
         for ($usr = 0; $usr < 5; ++$usr) {

@@ -17,8 +17,7 @@ class LignedecommFixtures extends Fixture implements DependentFixtureInterface
 
         $lignecom1->setQuantite(3)
             ->setPrix(150)
-            ->setProduit($product1)
-            ->setCommande($commande1);
+            ->setProduit($product1);
         $manager->persist($lignecom1);
 
         $manager->flush();

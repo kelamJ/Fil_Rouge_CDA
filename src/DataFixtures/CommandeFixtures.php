@@ -22,7 +22,6 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
     {
         for ($ord = 0; $ord < 5; ++$ord) {
             $order = new Commande();
-            $statut1 = $this->getReference('Valide');
             $pay2 = $this->getReference('Mastercard');
             $user = $this->getReference('user'. $ord);
             $livraison1 = $this->getReference('Colissimo');
@@ -31,8 +30,8 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
                 ->setComAdresse($this->faker->streetAddress)
                 ->setComVille($this->faker->city)
                 ->setComCp($this->faker->postcode)
-                ->setStatut($statut1)
                 ->setReference(uniqid())
+                ->setComStatut('En cours')
                 ->setPaiement($pay2)
                 ->setUtilisateur($user)
                 ->setLivraison($livraison1);
@@ -46,7 +45,6 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            StatutFixtures::class,
             PaiementFixtures::class,
             UtilisateurFixtures::class
         ];

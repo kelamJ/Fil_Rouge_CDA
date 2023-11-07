@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/commande', name: 'app_orders_')]
+#[Route('/commande', name: 'app_order_')]
 class CommandeController extends AbstractController
 {
     #[Route('/ajout', name: 'add')]
@@ -30,9 +30,10 @@ class CommandeController extends AbstractController
         $commande = new Commande();
 
         // On remplit la commande
-        $commande->setUtilisateur($this->getUser());
-        $commande->setReference(uniqid());
-        $commande->setComDate();
+        $commande->setUtilisateur($this->getUser())
+                ->setReference(uniqid())
+                ->setComDate(new \DateTime('now'))
+                ->setComStatut('En préparation');
 
 
         //On parcourt le panier pour créer les détails de commande
@@ -45,9 +46,9 @@ class CommandeController extends AbstractController
             $prix = $produit->getPrixVente();
 
             //On crée le détail de la commande
-            $commandeDetail->setProduit($produit);
-            $commandeDetail->setPrix($prix);
-            $commandeDetail->setQuantite($quantite);
+            $commandeDetail->setProduit($produit)
+                        ->setPrix($prix)
+                        ->setQuantite($quantite);
 
             $commande->addDetailCommande($commandeDetail);
         }
@@ -59,6 +60,6 @@ class CommandeController extends AbstractController
         $session->remove('panier');
 
         $this->addFlash('message', 'Commande créée avec succès');
-        $this->redirectToRoute('accueil');
+        return $this->redirectToRoute('accueil');
     }
 }
