@@ -3,24 +3,26 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<div class="product-content">
     <div class="container">
         <div class="d-flex justify-content-center align-items-center row row-cols-1 row-cols-md-3 mt-5">
             {% for categories in categorie %}
                 <div class="bg-image hover-overlay ripple mt-5 card-anim" style="width: 20rem;--color: #fff" data-mdb-ripple-color="light">
-                <div class="card mt-5 mx-auto">
-                    <img class="card-img-top card-image" src="{{ asset('assets/uploads/categories/') ~ categories.catImage }}" alt="Card image cap">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    <div class="card mt-5 mx-auto">
+                        <img class="card-img-top card-image" src="{{ asset('assets/uploads/categories/') ~ categories.catImage }}" alt="Card image cap">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
 
+                    </div>
+                    <div class="card-body text-white rounded-bottom">
+                        <h4 class="card-title">{{ categories.catNom }}</h4>
+                        <p class="card-text"></p>
+                        <button type="button" class="button mb-3 btn-custom">Consulter</button>
+                    </div>
                 </div>
-                <div class="card-body text-white rounded-bottom">
-                    <h4 class="card-title">{{ categories.catNom }}</h4>
-                    <p class="card-text"></p>
-                    <button type="button" class="button mb-3 btn-custom">Consulter</button>
-                </div>
-            </div>
             {% endfor %}
         </div>
     </div>
+</div>
 
     <script>
         const buttons = document.querySelectorAll(".button");

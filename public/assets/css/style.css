@@ -15,6 +15,15 @@ body {
     background: url('image/bgredspace.png') repeat center;
 
 }
+/*Flash Message*/
+.flash-message {
+    color: #fff; /* Texte blanc */
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(25px);
+    text-align: center;
+    padding: 10px;
+}
+
 /*Navbar*/
 
 .header {
@@ -88,37 +97,14 @@ body {
     /*font-size: 25px;*/
 }
 
-/*FOOTER*/
-/*.social-icons  {*/
-/*    position: fixed;*/
-/*    padding: 10px 10px 10px 10px;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-/*    !* Height of the footer*!*/
-/*    height: 55px;*/
-/*    background: rgba(0, 0, 0, .1);*/
-/*    backdrop-filter: blur(25px);*/
-/*}*/
-
-/*.social-icons .bx {*/
-/*    width: 40px;*/
-/*    height: 40px;*/
-/*    border-radius: 50%;*/
-/*    text-align: center;*/
-/*    line-height: 40px;*/
-/*    font-size: 20px;*/
-/*    color: #ffffff;*/
-/*    margin-right: 15px;*/
-/*    cursor: pointer;*/
-/*}*/
-
 .product-content {
-    margin-bottom: 20rem !important;
+    margin-bottom: 10rem !important;
 }
+
 
 .footer {
     margin-top: 10px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;

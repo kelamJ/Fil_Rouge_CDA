@@ -59,7 +59,7 @@ class CommandeController extends AbstractController
 
         $session->remove('panier');
 
-        $this->addFlash('message', 'Commande créée avec succès');
+        $this->addFlash('message', '<div class="flash-message">Commande créée avec succès</div>');
         return $this->redirectToRoute('accueil');
     }
 }
