@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Categorie;
 use App\Entity\Produit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -23,14 +22,14 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $product1 = new Produit();
-        $cat1 = $this->getReference('Classics');
+        $cat1 = $this->getReference('vesteH');
         $fourni = $this->getReference('fourni1');
-        $product1->setProNom('Skate GLOBE')
-            ->setProDescription('Planche en bois avec 4 roue en plastique.')
+        $product1->setProNom('Veste gucci')
+            ->setProDescription('Jolie veste gucci')
             ->setProStock(5)
-            ->setPrixAchat('40')
-            ->setPrixVente('50')
-            ->setImage('skateboard.jpg')
+            ->setPrixAchat('200')
+            ->setPrixVente('250')
+            ->setImage('vesteGucci.jpg')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product1->getProNom())->lower())
             ->setCategorie($cat1)
@@ -38,64 +37,82 @@ class ProduitFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($product1);
         $this->addReference('produit1', $product1);
 
-
         $product2 = new Produit();
-        $cat5 = $this->getReference('Cruisers');
-        $product2->setProNom('Cruiser PENNY')
-            ->setProDescription('Petite planche en plastique avec 4 roue en gomme.')
-            ->setProStock(5)
-            ->setPrixAchat('10')
-            ->setPrixVente('20')
-            ->setImage('skateboard.jpg')
+        $cat1 = $this->getReference('vesteH');
+        $fourni = $this->getReference('fourni2');
+        $product2->setProNom('Veste RalphLauren')
+            ->setProDescription('Grande veste Ralph Lauren')
+            ->setProStock(10)
+            ->setPrixAchat('100')
+            ->setPrixVente('150')
+            ->setImage('vesteRalphLauren.jpg')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product2->getProNom())->lower())
-            ->setCategorie($cat5);
+            ->setCategorie($cat1)
+            ->setFournisseur($fourni);
         $manager->persist($product2);
 
         $product3 = new Produit();
-        $cat2 = $this->getReference('Longboards');
-        $product3->setProNom('Long LOADED')
-            ->setProDescription('Grande planche en bois et 4 roue en gomme.')
+        $cat1 = $this->getReference('vesteH');
+        $fourni = $this->getReference('fourni4');
+        $product3->setProNom('Veste Lacoste')
+            ->setProDescription('Veste a motif Lacoste')
             ->setProStock(5)
-            ->setPrixAchat('110')
-            ->setPrixVente('100')
-            ->setImage('skateboard.jpg')
+            ->setPrixAchat('50')
+            ->setPrixVente('80')
+            ->setImage('vesteLacoste.jpg')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product3->getProNom())->lower())
-            ->setCategorie($cat2);
-
+            ->setCategorie($cat1)
+            ->setFournisseur($fourni);
         $manager->persist($product3);
 
         $product4 = new Produit();
-        $mainCat2 = $this->getReference('electrique');
-
-        $product4->setProNom('Hover HUMMER')
-            ->setProDescription('Grande planche en bois et 4 roue en gomme.')
-            ->setProStock(0)
-            ->setPrixAchat('210')
-            ->setPrixVente('200')
-            ->setImage('skateboard.jpg')
+        $cat3 = $this->getReference('pantH');
+        $fourni = $this->getReference('fourni1');
+        $product4->setProNom('Pantalon gucci')
+            ->setProDescription('Jolie pantalon gucci')
+            ->setProStock(5)
+            ->setPrixAchat('300')
+            ->setPrixVente('500')
+            ->setImage('pantGucci.jpg')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product4->getProNom())->lower())
-            ->setCategorie($mainCat2);
-
+            ->setCategorie($cat3)
+            ->setFournisseur($fourni);
         $manager->persist($product4);
+        $manager->flush();
 
         $product5 = new Produit();
-        $mainCat2 = $this->getReference('electrique');
-
-        $product5->setProNom('Onewheel PINT')
-            ->setProDescription('Un format pocket qui va vous faire aimer vos déplacements au quotidien. Le Onewheel Pint est un concentré de technologie, léger, réactif et puissant.')
-            ->setProStock(5)
-            ->setPrixAchat('510')
-            ->setPrixVente('500')
-            ->setImage('skateboard.jpg')
+        $cat5 = $this->getReference('tshirtH');
+        $fourni = $this->getReference('fourni1');
+        $product5->setProNom('T-shirt Gucci')
+            ->setProDescription('T-shirt a col rond et a motif Gucci')
+            ->setProStock(2)
+            ->setPrixAchat('50')
+            ->setPrixVente('150')
+            ->setImage('tshirtGucci.jpg')
             ->setIsActive(1)
             ->setSlug($this->slugger->slug($product5->getProNom())->lower())
-            ->setCategorie($mainCat2);
-
+            ->setCategorie($cat5)
+            ->setFournisseur($fourni);
         $manager->persist($product5);
+        $manager->flush();
 
+        $product6 = new Produit();
+        $cat5 = $this->getReference('tshirtH');
+        $fourni = $this->getReference('fourni5');
+        $product6->setProNom('T-shirt Burberry')
+            ->setProDescription('T-shirt a motif brodé Burberry')
+            ->setProStock(10)
+            ->setPrixAchat('30')
+            ->setPrixVente('60')
+            ->setImage('tshirtBurberry.jpg')
+            ->setIsActive(1)
+            ->setSlug($this->slugger->slug($product6->getProNom())->lower())
+            ->setCategorie($cat5)
+            ->setFournisseur($fourni);
+        $manager->persist($product6);
         $manager->flush();
     }
 

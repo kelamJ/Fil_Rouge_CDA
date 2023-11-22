@@ -18,7 +18,7 @@ class FournisseurFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        for ($fou = 0; $fou < 5; ++$fou) {
+        for ($fou = 0; $fou < 8; ++$fou) {
             $fourni = new Fournisseur();
             $fourni->setNom($this->faker->company)
                 ->setTelephone($this->faker->phoneNumber)

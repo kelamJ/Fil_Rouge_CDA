@@ -12,7 +12,8 @@ body {
     padding-top: 5rem;
     min-height: 100vh;
     background-size: cover;
-    background: url('image/bgredspace.png') repeat center;
+    background: radial-gradient(circle at center, #EED9C4 , #EDC9AF);
+    /*background: url('image/bgWhite.jpg') repeat center;*/
 
 }
 /*Flash Message*/
@@ -74,10 +75,14 @@ body {
 
 .navbar-css a {
     font-size: 1.15rem;
-    color: white;
+    color: #756A5E;
     text-decoration: none;
     font-weight: 500;
     margin-left: 2.5rem;
+}
+
+.navbar-css a:hover {
+    color: #fff;
 }
 
 #check {
@@ -95,6 +100,13 @@ body {
 
 .navbar-css i {
     /*font-size: 25px;*/
+}
+
+.navbar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 .product-content {
@@ -121,7 +133,7 @@ body {
     padding: 30px;
 }
 .footer-row .footer-col h4 {
-    color: #fff;
+    color: #756A5E;
     font-size: 1.2rem;
     font-weight: 400;
 }
@@ -134,14 +146,14 @@ body {
 }
 .footer-col .links li a {
     text-decoration: none;
-    color: #bfbfbf;
+    color: #756A5E;
 }
 .footer-col .links li a:hover {
     color: #fff;
 }
 .footer-col p {
     margin: 20px 0;
-    color: #bfbfbf;
+    color: #756A5E;
     max-width: 300px;
 }
 .footer-col form {
@@ -182,7 +194,7 @@ body {
     cursor: pointer;
 }
 .footer-col .icons i {
-    color: #afb6c7;
+    color: #756A5E;
 }
 .footer-col .icons i:hover  {
     color: #fff;
@@ -220,130 +232,6 @@ body {
     }
     .footer-col form button {
         margin: 10px 0 0 0;
-    }
-}
-/*CARD*/
-.card-anim {
-    transition: transform 0.2s ease; /* Animation de transition fluide */
-}
-
-
-.card-anim:hover {
-    transform: scale(1.05); /* Léger effet de zoom lors du survol */
-}
-
-.card-body {
-    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-    backdrop-filter: blur(5px);
-    text-align: center !important;
-}
-
-{
-    transform: scale3d(1.01,1.01,1.01);
-}
-.center-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-img {
-    border-radius: 5px 5px 0 0;
-}
-
-/*FORM*/
-
-.place-color {
-    color: white !important;
-}
-
-.place-color::placeholder {
-    color: white !important;
-}
-
-.form-style {
-    color:  #FAF9F6;
-}
-/*Button*/
-.button {
-    position: relative;
-    background: #FAF9F6 !important;
-    padding: 4px 16px;
-    height: 2rem;
-    font-size: 14px;    border-radius: 6px;
-    color: #4A0404;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.btn-custom:hover {
-    color: #c23943;
-    transition: color .3s;
-}
-
-.button:active {
-    transform: scale(0.96);
-}
-
-.button::before,
-.button::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-    width: 150%;
-    z-index: -1;
-    background-repeat: no-repeat;
-}
-
-.button.animate::before {
-    top: -70%;
-    background-image: radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, #c23943 20%, transparent 30%),
-    radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, transparent 15%, #c23943 15%, transparent 20%),
-    radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #c23943 20%, transparent 20%),
-    radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #c23943 20%, transparent 20%);
-    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 18% 18%;
-    background-position: 5% 90%, 10% 90%, 10% 90%,15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-    animation: topBubbles 0.6s ease-in-out infinite;
-}
-@keyframes topBubbles {
-    50% {
-        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-    }
-    100% {
-        background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-    }
-}
-
-.button.animate::after {
-    bottom: -70%;
-    background-image:     radial-gradient(circle, #c23943 20%, transparent 20%),
-    radial-gradient(circle, transparent 15%, #E97451 15%, transparent 20%),
-    radial-gradient(circle, #c23943 20%, transparent 20%),
-    radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #c23943 20%, transparent 20%),
-    radial-gradient(circle, #E97451 20%, transparent 20%),
-    radial-gradient(circle, #c23943 20%, transparent 20%);
-    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
-    background-position: 10% 0%, 30% 10%, 55% 0%, 70% 0%, 85% 0%, 70% 0%, 70% 0%;
-    animation: bottomBubbles 0.6s ease-in-out infinite;
-}
-@keyframes bottomBubbles {
-    50% {
-        background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-    }
-    100% {
-        background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 0%;
-        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
     }
 }
 

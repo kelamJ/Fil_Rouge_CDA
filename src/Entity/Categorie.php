@@ -27,18 +27,17 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $cat_image = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?self $cat_sub = null;
-
-    #[ORM\OneToMany(mappedBy: 'cat_sub', targetEntity: self::class)]
-    private Collection $categories;
-
     #[ORM\OneToMany(mappedBy: 'cat', targetEntity: Produit::class)]
     private Collection $produits;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
     private Collection $cat;
+
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    private ?self $parent = null;
+
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    private Collection $categories;
 
     public function __construct()
     {
@@ -84,48 +83,6 @@ class Categorie
     public function setCatImage(string $cat_image): static
     {
         $this->cat_image = $cat_image;
-
-        return $this;
-    }
-
-    public function getCatSub(): ?self
-    {
-        return $this->cat_sub;
-    }
-
-    public function setCatSub(?self $cat_sub): static
-    {
-        $this->cat_sub = $cat_sub;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(self $category): static
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->setCatSub($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(self $category): static
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getCatSub() === $this) {
-                $category->setCatSub(null);
-            }
-        }
 
         return $this;
     }
@@ -193,6 +150,48 @@ class Categorie
     public function __toString(): string
     {
         return $this->getCatNom();
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): static
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(self $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(self $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getParent() === $this) {
+                $category->setParent(null);
+            }
+        }
+
+        return $this;
     }
 
 }
